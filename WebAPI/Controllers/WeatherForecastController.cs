@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Abstract;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,12 @@ namespace WebAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IObjectConvertFormat _objectConvertFormat;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IObjectConvertFormat objectConvertFormat)
         {
             _logger = logger;
+            _objectConvertFormat = objectConvertFormat;
         }
 
         /// <summary>
@@ -31,6 +34,8 @@ namespace WebAPI.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+            _logger.LogInformation($"test deneme {DateTime.Now.ToString("ddMMyyyy")}");
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
