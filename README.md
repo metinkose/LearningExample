@@ -1,0 +1,2 @@
+# LearningExample
+Beni oku test!
